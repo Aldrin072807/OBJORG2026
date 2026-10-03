@@ -102,7 +102,7 @@
         <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary-custom fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand font-weight-bold" href="#page-top">MY PROFILE</a>
+                <a class="navbar-brand font-weight-bold" href="{% url 'portfolio:home' %}">MY PROFILE</a>
                 <button class="navbar-toggler font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu <i class="fas fa-bars ml-1"></i>
                 </button>
@@ -110,8 +110,8 @@
                     <ul class="navbar-nav ml-auto text-center">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">PROFILE</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">ABOUT</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects">PROJECTS</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#testimonials">TESTIMONIALS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'portfolio:project_list' %}">PROJECTS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'portfolio:personal_info' %}">PERSONAL INFO</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">CONTACT</a></li>
                     </ul>
                 </div>
@@ -122,10 +122,16 @@
         <header class="masthead bg-primary-custom text-white text-center">
             <div class="container d-flex align-items-center flex-column justify-content-center">
                 <img class="masthead-avatar mb-4" src="{% static 'assets/img/Live chatbot (2).svg' %}" alt="Avatar" onerror="this.src='https://via.placeholder.com/320?text=Profile+Avatar';">
-                <h1 class="masthead-heading text-uppercase mb-3 font-weight-bold">ALDRIN DESEPEDA</h1>
+                <h1 class="masthead-heading text-uppercase mb-3 font-weight-bold">
+                    {% if personal_info %}
+                        {{ personal_info.first_name }} {{ personal_info.last_name }}
+                    {% else %}
+                        ALDRIN DESEPEDA
+                    {% endif %}
+                </h1>
                 <p class="masthead-subheading font-weight-light mb-0 mx-auto" style="max-width: 700px;">
                     Bachelor of Science in Computer Engineering <br><br>
-                    Computer Engineering student passionate about software development, embedded systems, and innovative technology. Always eager to learn new technologies and create practical, user-focused solutions.
+                    Welcome to my personal portfolio! Explore my projects, technical skills, and computer engineering work below.
                 </p>
             </div>
         </header>
@@ -172,7 +178,7 @@
             </div>
         </section>
 
-        <!-- About Section (Centered Banner Format) -->
+        <!-- About Section -->
         <section class="page-section bg-primary-custom text-white text-center" id="about">
             <div class="container">
                 <h2 class="section-banner-title text-uppercase mb-4">ABOUT</h2>
@@ -180,7 +186,7 @@
                     Computer Engineering student passionate about software development, full-stack web applications, and embedded systems. Dedicated to continuous learning and solving real-world technical problems.
                 </p>
                 <div class="mt-4">
-                    <a href="#contact" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
+                    <a href="{% url 'portfolio:personal_info' %}" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
                         <i class="fas fa-user-circle mr-2"></i>Learn More About Me
                     </a>
                 </div>
@@ -195,47 +201,46 @@
                     Explore my web development work, software applications, and computer engineering coursework projects.
                 </p>
                 <div class="mt-4">
-                    <a href="{% url 'project_list' %}" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
+                    <a href="{% url 'portfolio:project_list' %}" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
                         <i class="fas fa-folder mr-2"></i>View All Projects
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section class="page-section bg-primary-custom text-white text-center" id="testimonials">
-            <div class="container">
-                <h2 class="section-banner-title text-uppercase mb-4">TESTIMONIALS</h2>
-                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
-                    Read feedback and recommendations from academic peers, project partners, and colleagues.
-                </p>
-                <div class="mt-4">
-                    <a href="{% url 'testimony_list' %}" class="btn btn-outline-light btn-lg px-4 py-3 font-weight-bold">
-                        <i class="fas fa-comment-dots mr-2"></i>View Testimonials
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Contact Section -->
-        <section class="page-section bg-secondary-custom" id="contact">
+        <section class="page-section bg-primary-custom" id="contact">
             <div class="container text-center">
                 <h2 class="section-banner-title text-white text-uppercase mb-5">CONTACT</h2>
                 <div class="row justify-content-center">
                     <div class="col-lg-4 mb-4">
                         <i class="fas fa-mobile-alt fa-2x text-info mb-2"></i>
                         <div class="text-muted">Phone</div>
-                        <div class="lead font-weight-bold text-white">(0961) 358-6410</div>
+                        <div class="lead font-weight-bold text-white">
+                            {% if personal_info %}
+                                {{ personal_info.contact_number }}
+                            {% else %}
+                                09613586410
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="col-lg-4 mb-4">
                         <i class="far fa-envelope fa-2x text-info mb-2"></i>
                         <div class="text-muted">Email</div>
-                        <a class="lead font-weight-bold text-info" href="mailto:desepeda.drin0728@gmail.com">desepeda.drin0728@gmail.com</a>
+                        <a class="lead font-weight-bold text-info" href="mailto:{% if personal_info %}{{ personal_info.email }}{% else %}desepeda.drin0728@gmail.com{% endif %}">
+                            {% if personal_info %}
+                                {{ personal_info.email }}
+                            {% else %}
+                                desepeda.drin0728@gmail.com
+                            {% endif %}
+                        </a>
                     </div>
                     <div class="col-lg-4 mb-4">
-                        <i class="fas fa-file-alt fa-2x text-info mb-2"></i>
-                        <div class="text-muted">Inquiry</div>
-                        <a class="lead font-weight-bold text-info" href="{% url 'contact' %}">Contact Form</a>
+                        <i class="fas fa-id-card fa-2x text-info mb-2"></i>
+                        <div class="text-muted">Personal Info</div>
+                        <a class="lead font-weight-bold text-info" href="{% url 'portfolio:personal_info' %}">
+                            View Full Information
+                        </a>
                     </div>
                 </div>
             </div>
@@ -290,9 +295,7 @@
             </div>
         </div>
 
-        <!-- ============================================== -->
-        <!-- BOTTOM OF THE WEBSITE (Footer & Copyright)     -->
-        <!-- ============================================== -->
+        <!-- Footer -->
         <footer class="footer py-5 bg-dark text-white text-center">
             <div class="container">
                 <div class="row">
@@ -300,7 +303,11 @@
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <h4 class="mb-3 text-uppercase font-weight-bold">LOCATION</h4>
                         <p class="lead mb-0 text-muted">
-                            Charlie Street 338 Brgy. Balutu Concepcion Tarlac
+                            {% if personal_info %}
+                                {{ personal_info.address }}
+                            {% else %}
+                                Charlie Street 338 Brgy. Balutu Concepcion Tarlac
+                            {% endif %}
                         </p>
                     </div>
 

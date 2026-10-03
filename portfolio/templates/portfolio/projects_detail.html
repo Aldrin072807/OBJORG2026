@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ project.project_name }} - Project Details</title>
+    
+    <!-- Bootstrap 4 CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Font Awesome icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --accent-blue: #17a2b8;
+            --bg-primary: #1e293b;
+            --bg-secondary: #0f172a;
+        }
+
+        body {
+            padding-top: 100px;
+            background-color: var(--bg-secondary);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .section-banner-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding-bottom: 12px;
+            display: inline-block;
+        }
+
+        .section-banner-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+
+        .detail-card {
+            background-color: var(--bg-primary);
+            border: 1px solid #334155;
+            border-radius: 12px;
+        }
+
+        .btn-custom {
+            background-color: #17a2b8;
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+        }
+
+        .btn-custom:hover {
+            background-color: #138496;
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold" href="{% url 'portfolio:home' %}">MY PROFILE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                Menu <i class="fas fa-bars ml-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto text-center">
+                    <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:home' %}">HOME</a></li>
+                    <li class="nav-item active"><a class="nav-link py-3 px-3" href="{% url 'portfolio:project_list' %}">PROJECTS</a></li>
+                    <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:personal_info' %}">PERSONAL INFO</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Detail Content -->
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="section-banner-title text-white text-uppercase">{{ project.project_name }}</h1>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card detail-card p-4 p-md-5">
+                    <div class="mb-4">
+                        <h5 class="text-info font-weight-bold mb-2"><i class="fas fa-align-left mr-2"></i>Description</h5>
+                        <p class="lead" style="line-height: 1.8;">{{ project.description }}</p>
+                    </div>
+
+                    <hr class="border-secondary">
+
+                    <div class="mb-4">
+                        <h5 class="text-info font-weight-bold mb-2"><i class="fas fa-code mr-2"></i>Tech Stack</h5>
+                        <span class="badge badge-info p-2 font-weight-normal" style="font-size: 1rem;">
+                            {{ project.tech_stack }}
+                        </span>
+                    </div>
+
+                    <hr class="border-secondary">
+
+                    <div class="mb-4">
+                        <h5 class="text-info font-weight-bold mb-2"><i class="fas fa-link mr-2"></i>Project Link</h5>
+                        {% if project.link %}
+                            <a href="{{ project.link }}" target="_blank" class="text-info font-weight-bold" style="word-break: break-all;">
+                                {{ project.link }} <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        {% else %}
+                            <span class="text-muted">No link provided.</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="{% url 'portfolio:project_list' %}" class="btn btn-custom">
+                            <i class="fas fa-arrow-left mr-2"></i>Back to Projects List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
