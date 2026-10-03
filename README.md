@@ -29,9 +29,27 @@ A full-stack dynamic personal portfolio web application built using Django, Pyth
 
 ---
 
-## Repository Structure
+## Detailed Setup & Local Installation Guide
 
-```text
+Follow these exact sequential steps to configure, install, and run the project environment on your local machine.
+
+---
+
+### Step 1: System Prerequisites
+Ensure the following software is installed on your computer before proceeding:
+- **Python:** Version 3.10 or higher (`python --version` or `python3 --version`)
+- **Git:** Version Control System (`git --version`)
+
+---
+
+### Step 2: Clone the Project Repository
+Open your terminal (PowerShell, Command Prompt, or Terminal) and clone the repository:
+
+```bash
+git clone [https://github.com/Aldrin072807/OBJORG2026.git](https://github.com/Aldrin072807/OBJORG2026.git)
+cd OBJORG2026
+
+
 OBJORG2026/
 ├── portfolio/                  # Core Django Application
 │   ├── templates/portfolio/    # HTML Templates
