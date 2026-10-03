@@ -50,7 +50,6 @@ git clone [https://github.com/Aldrin072807/OBJORG2026.git](https://github.com/Al
 cd OBJORG2026
 
 
-```text
 OBJORG2026/
 ├── portfolio/                  # Core Django Application
 │   ├── templates/portfolio/    # HTML Templates
