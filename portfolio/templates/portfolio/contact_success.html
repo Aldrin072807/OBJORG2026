@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inquiry Submitted</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding-top: 120px;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-5">
+                    <i class="fas fa-check-circle fa-5x text-info mb-4"></i>
+                    <h2 class="font-weight-bold mb-3">Thank You!</h2>
+                    <p class="lead mb-4">Your inquiry has been submitted successfully. I will get back to you soon.</p>
+                    <a href="{% url 'portfolio:home' %}" class="btn btn-info font-weight-bold">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

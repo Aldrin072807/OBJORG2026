@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>My Projects</title>
+    <title>Add Project</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
@@ -44,28 +44,10 @@
             border-radius: 2px;
         }
 
-        .project-card {
+        .form-card {
             background-color: var(--bg-primary);
             border: 1px solid #334155;
             border-radius: 12px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-blue);
-        }
-
-        .project-link {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #f8fafc;
-            text-decoration: none;
-        }
-
-        .project-link:hover {
-            color: var(--accent-blue);
-            text-decoration: none;
         }
 
         .btn-custom {
@@ -80,7 +62,6 @@
         .btn-custom:hover {
             background-color: #138496;
             color: #ffffff;
-            text-decoration: none;
         }
     </style>
 </head>
@@ -104,36 +85,41 @@
         </div>
     </nav>
 
-    <div class="container text-center my-5">
-        <h1 class="section-banner-title text-white text-uppercase mb-4">MY PROJECTS</h1>
-        
-        <div class="mb-5">
-            <a href="{% url 'portfolio:add_project' %}" class="btn btn-custom btn-lg font-weight-bold">
-                <i class="fas fa-plus-circle mr-2"></i>Add New Project
-            </a>
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="section-banner-title text-white text-uppercase">ADD NEW PROJECT</h1>
         </div>
 
         <div class="row justify-content-center">
-            {% for project in projects %}
-                <div class="col-md-8 col-lg-6 mb-4">
-                    <div class="card project-card p-4 text-center">
-                        <i class="fas fa-folder-open fa-3x text-info mb-3"></i>
-                        <a href="{% url 'portfolio:project_detail' project.id %}" class="project-link">
-                            {{ project.project_name }}
-                        </a>
-                    </div>
+            <div class="col-lg-8">
+                <div class="card form-card p-4 p-md-5">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold text-info">Project Name</label>
+                            {{ form.project_name }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold text-info">Description</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold text-info">Tech Stack</label>
+                            {{ form.tech_stack }}
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-info">Project Link</label>
+                            {{ form.link }}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-custom btn-block btn-lg font-weight-bold">
+                                <i class="fas fa-save mr-2"></i>Save Project
+                            </button>
+                            <a href="{% url 'portfolio:project_list' %}" class="btn btn-link text-muted mt-2">Cancel</a>
+                        </div>
+                    </form>
                 </div>
-            {% empty %}
-                <div class="col-12">
-                    <p class="lead text-muted">No projects found in database.</p>
-                </div>
-            {% endfor %}
-        </div>
-
-        <div class="mt-4">
-            <a href="{% url 'portfolio:home' %}" class="btn btn-outline-light">
-                <i class="fas fa-arrow-left mr-2"></i>Back to Home
-            </a>
+            </div>
         </div>
     </div>
 

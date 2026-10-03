@@ -17,6 +17,11 @@
         <link href="{% static 'css/body.css' %}" rel="stylesheet">
 
         <style>
+            /* Smooth scrolling for anchor links */
+            html {
+                scroll-behavior: smooth;
+            }
+
             /* Layout & Color Variables */
             :root {
                 --accent-blue: #17a2b8;
@@ -109,9 +114,9 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto text-center">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">PROFILE</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">ABOUT</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'portfolio:project_list' %}">PROJECTS</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'portfolio:personal_info' %}">PERSONAL INFO</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects">PROJECTS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#testimonials">TESTIMONIALS</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">CONTACT</a></li>
                     </ul>
                 </div>
@@ -131,7 +136,7 @@
                 </h1>
                 <p class="masthead-subheading font-weight-light mb-0 mx-auto" style="max-width: 700px;">
                     Bachelor of Science in Computer Engineering <br><br>
-                    Welcome to my personal portfolio! Explore my projects, technical skills, and computer engineering work below.
+                    Welcome to my personal portfolio! Explore my projects, technical skills, testimonials, and contact information below.
                 </p>
             </div>
         </header>
@@ -178,23 +183,8 @@
             </div>
         </section>
 
-        <!-- About Section -->
-        <section class="page-section bg-primary-custom text-white text-center" id="about">
-            <div class="container">
-                <h2 class="section-banner-title text-uppercase mb-4">ABOUT</h2>
-                <p class="lead mb-4 mx-auto" style="max-width: 800px; line-height: 1.8;">
-                    Computer Engineering student passionate about software development, full-stack web applications, and embedded systems. Dedicated to continuous learning and solving real-world technical problems.
-                </p>
-                <div class="mt-4">
-                    <a href="{% url 'portfolio:personal_info' %}" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
-                        <i class="fas fa-user-circle mr-2"></i>Learn More About Me
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Projects Section -->
-        <section class="page-section bg-secondary-custom text-white text-center" id="projects">
+        <section class="page-section bg-primary-custom text-white text-center" id="projects">
             <div class="container">
                 <h2 class="section-banner-title text-uppercase mb-4">PROJECTS</h2>
                 <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
@@ -208,40 +198,32 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section class="page-section bg-primary-custom" id="contact">
-            <div class="container text-center">
-                <h2 class="section-banner-title text-white text-uppercase mb-5">CONTACT</h2>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 mb-4">
-                        <i class="fas fa-mobile-alt fa-2x text-info mb-2"></i>
-                        <div class="text-muted">Phone</div>
-                        <div class="lead font-weight-bold text-white">
-                            {% if personal_info %}
-                                {{ personal_info.contact_number }}
-                            {% else %}
-                                09613586410
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <i class="far fa-envelope fa-2x text-info mb-2"></i>
-                        <div class="text-muted">Email</div>
-                        <a class="lead font-weight-bold text-info" href="mailto:{% if personal_info %}{{ personal_info.email }}{% else %}desepeda.drin0728@gmail.com{% endif %}">
-                            {% if personal_info %}
-                                {{ personal_info.email }}
-                            {% else %}
-                                desepeda.drin0728@gmail.com
-                            {% endif %}
-                        </a>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <i class="fas fa-id-card fa-2x text-info mb-2"></i>
-                        <div class="text-muted">Personal Info</div>
-                        <a class="lead font-weight-bold text-info" href="{% url 'portfolio:personal_info' %}">
-                            View Full Information
-                        </a>
-                    </div>
+        <!-- Testimonials Section -->
+        <section class="page-section bg-secondary-custom text-white text-center" id="testimonials">
+            <div class="container">
+                <h2 class="section-banner-title text-uppercase mb-4">TESTIMONIALS</h2>
+                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
+                    Read feedback and recommendations from academic peers, project partners, and colleagues, or leave a new testimony.
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'portfolio:testimony_list' %}" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
+                        <i class="fas fa-comment-dots mr-2"></i>View Testimonials
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inquiries / Contact Section -->
+        <section class="page-section bg-primary-custom text-white text-center" id="contact">
+            <div class="container">
+                <h2 class="section-banner-title text-uppercase mb-4">INQUIRIES & CONTACT</h2>
+                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
+                    Have questions or want to inquire about a collaboration? Send a message through the contact form.
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'portfolio:contact' %}" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
+                        <i class="fas fa-envelope mr-2"></i>Send an Inquiry
+                    </a>
                 </div>
             </div>
         </section>
