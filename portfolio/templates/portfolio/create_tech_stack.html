@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Tech Stack</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <style>
+        :root {
+            --sand-light: #E3DCD2;
+            --accent-tan: #CC8B65;
+            --bg-primary: #013328;
+            --bg-dark: #100C0D;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--sand-light);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding-top: 100px;
+        }
+
+        h2, .btn-custom {
+            font-family: 'Cinzel', serif;
+        }
+
+        .card-form {
+            background-color: var(--bg-primary);
+            border: 1px solid #154539;
+            border-radius: 12px;
+        }
+
+        .btn-custom {
+            background-color: var(--accent-tan);
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+        }
+
+        .btn-custom:hover {
+            background-color: #b87853;
+            color: #ffffff;
+        }
+
+        label {
+            color: var(--accent-tan);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card card-form p-4 p-md-5">
+                    <h2 class="text-white text-uppercase font-weight-bold mb-4">CREATE TECH STACK</h2>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-4">
+                            <label>Tech Stack Name</label>
+                            {{ form.name }}
+                        </div>
+
+                        <button type="submit" class="btn btn-custom btn-block btn-lg font-weight-bold">Save Tech Stack</button>
+                        <a href="{% url 'portfolio:dashboard' %}" class="btn btn-link text-muted btn-block mt-2">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
