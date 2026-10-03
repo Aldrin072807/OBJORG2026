@@ -1,0 +1,345 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>My Profile</title>
+        
+        <!-- Bootstrap 4 CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- Font Awesome icons -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+        <!-- Custom static stylesheets -->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'css/heading.css' %}" rel="stylesheet">
+        <link href="{% static 'css/body.css' %}" rel="stylesheet">
+
+        <style>
+            /* Layout & Color Variables */
+            :root {
+                --accent-blue: #17a2b8;
+                --bg-primary: #1e293b;
+                --bg-secondary: #0f172a;
+            }
+
+            body {
+                padding-top: 100px;
+                background-color: var(--bg-secondary);
+                color: #f8fafc;
+            }
+
+            /* Banner Heading Style */
+            .section-banner-title {
+                font-size: 2.25rem;
+                font-weight: 800;
+                letter-spacing: 1.5px;
+                position: relative;
+                padding-bottom: 12px;
+                display: inline-block;
+            }
+
+            .section-banner-title::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 4px;
+                background-color: var(--accent-blue);
+                border-radius: 2px;
+            }
+
+            .masthead {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+                background-color: var(--bg-primary);
+            }
+
+            .masthead-avatar {
+                max-width: 320px;
+                width: 100%;
+                height: auto;
+            }
+
+            .page-section {
+                padding: 5rem 0;
+            }
+
+            .portfolio-item {
+                cursor: pointer;
+                border-radius: 12px;
+                overflow: hidden;
+            }
+
+            .bg-primary-custom {
+                background-color: var(--bg-primary) !important;
+            }
+
+            .bg-secondary-custom {
+                background-color: var(--bg-secondary) !important;
+            }
+
+            .btn-custom {
+                background-color: #17a2b8;
+                color: #ffffff;
+                font-weight: 700;
+                border: none;
+                padding: 0.75rem 1.75rem;
+                border-radius: 6px;
+                transition: background-color 0.2s ease;
+            }
+
+            .btn-custom:hover {
+                background-color: #138496;
+                color: #ffffff;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary-custom fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand font-weight-bold" href="#page-top">MY PROFILE</a>
+                <button class="navbar-toggler font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu <i class="fas fa-bars ml-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto text-center">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">PROFILE</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">ABOUT</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects">PROJECTS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#testimonials">TESTIMONIALS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">CONTACT</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="masthead bg-primary-custom text-white text-center">
+            <div class="container d-flex align-items-center flex-column justify-content-center">
+                <img class="masthead-avatar mb-4" src="{% static 'assets/img/Live chatbot (2).svg' %}" alt="Avatar" onerror="this.src='https://via.placeholder.com/320?text=Profile+Avatar';">
+                <h1 class="masthead-heading text-uppercase mb-3 font-weight-bold">ALDRIN DESEPEDA</h1>
+                <p class="masthead-subheading font-weight-light mb-0 mx-auto" style="max-width: 700px;">
+                    Bachelor of Science in Computer Engineering <br><br>
+                    Computer Engineering student passionate about software development, embedded systems, and innovative technology. Always eager to learn new technologies and create practical, user-focused solutions.
+                </p>
+            </div>
+        </header>
+
+        <!-- Profile Section -->
+        <section class="page-section bg-secondary-custom" id="portfolio">
+            <div class="container text-center">
+                <h2 class="section-banner-title text-white text-uppercase mb-5">PROFILE</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal0">
+                            <div class="card bg-dark text-white p-4">
+                                <i class="fas fa-users fa-3x mb-3 text-info"></i>
+                                <h5>Socials</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+                            <div class="card bg-dark text-white p-4">
+                                <i class="fas fa-graduation-cap fa-3x mb-3 text-info"></i>
+                                <h5>Educational Background</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
+                            <div class="card bg-dark text-white p-4">
+                                <i class="fas fa-briefcase fa-3x mb-3 text-info"></i>
+                                <h5>Experience</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
+                            <div class="card bg-dark text-white p-4">
+                                <i class="fas fa-tools fa-3x mb-3 text-info"></i>
+                                <h5>Skills</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section (Centered Banner Format) -->
+        <section class="page-section bg-primary-custom text-white text-center" id="about">
+            <div class="container">
+                <h2 class="section-banner-title text-uppercase mb-4">ABOUT</h2>
+                <p class="lead mb-4 mx-auto" style="max-width: 800px; line-height: 1.8;">
+                    Computer Engineering student passionate about software development, full-stack web applications, and embedded systems. Dedicated to continuous learning and solving real-world technical problems.
+                </p>
+                <div class="mt-4">
+                    <a href="#contact" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
+                        <i class="fas fa-user-circle mr-2"></i>Learn More About Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="page-section bg-secondary-custom text-white text-center" id="projects">
+            <div class="container">
+                <h2 class="section-banner-title text-uppercase mb-4">PROJECTS</h2>
+                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
+                    Explore my web development work, software applications, and computer engineering coursework projects.
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'project_list' %}" class="btn btn-custom btn-lg font-weight-bold px-4 py-3">
+                        <i class="fas fa-folder mr-2"></i>View All Projects
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="page-section bg-primary-custom text-white text-center" id="testimonials">
+            <div class="container">
+                <h2 class="section-banner-title text-uppercase mb-4">TESTIMONIALS</h2>
+                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
+                    Read feedback and recommendations from academic peers, project partners, and colleagues.
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'testimony_list' %}" class="btn btn-outline-light btn-lg px-4 py-3 font-weight-bold">
+                        <i class="fas fa-comment-dots mr-2"></i>View Testimonials
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="page-section bg-secondary-custom" id="contact">
+            <div class="container text-center">
+                <h2 class="section-banner-title text-white text-uppercase mb-5">CONTACT</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 mb-4">
+                        <i class="fas fa-mobile-alt fa-2x text-info mb-2"></i>
+                        <div class="text-muted">Phone</div>
+                        <div class="lead font-weight-bold text-white">(0961) 358-6410</div>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <i class="far fa-envelope fa-2x text-info mb-2"></i>
+                        <div class="text-muted">Email</div>
+                        <a class="lead font-weight-bold text-info" href="mailto:desepeda.drin0728@gmail.com">desepeda.drin0728@gmail.com</a>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <i class="fas fa-file-alt fa-2x text-info mb-2"></i>
+                        <div class="text-muted">Inquiry</div>
+                        <a class="lead font-weight-bold text-info" href="{% url 'contact' %}">Contact Form</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Modals -->
+        <div class="portfolio-modal modal fade" id="portfolioModal0" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content bg-dark text-white">
+                    <button class="close text-white p-3" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <div class="modal-body text-center p-5">
+                        <h2 class="text-info mb-4">Socials</h2>
+                        <p class="lead">For inquiries, collaborations, or academic-related concerns, reach me at <strong>amdesepeda@student.hau.edu.ph</strong> or GitHub at <strong>github.com/Aldrin072807</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content bg-dark text-white">
+                    <button class="close text-white p-3" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <div class="modal-body text-center p-5">
+                        <h2 class="text-info mb-4">Educational Background</h2>
+                        <p class="lead">Graduated with honors across elementary, junior high, and senior high school education. Currently pursuing a Bachelor of Science in Computer Engineering.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content bg-dark text-white">
+                    <button class="close text-white p-3" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <div class="modal-body text-center p-5">
+                        <h2 class="text-info mb-4">Experience</h2>
+                        <p class="lead">Gained practical skills in student computer skill tutorials, Canva graphic design workshops for elementary pupils, and administrative record management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content bg-dark text-white">
+                    <button class="close text-white p-3" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <div class="modal-body text-center p-5">
+                        <h2 class="text-info mb-4">Skills</h2>
+                        <p class="lead">Strong critical thinking, time management, technical problem-solving, team leadership, and adaptable collaboration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- BOTTOM OF THE WEBSITE (Footer & Copyright)     -->
+        <!-- ============================================== -->
+        <footer class="footer py-5 bg-dark text-white text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Location Column -->
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <h4 class="mb-3 text-uppercase font-weight-bold">LOCATION</h4>
+                        <p class="lead mb-0 text-muted">
+                            Charlie Street 338 Brgy. Balutu Concepcion Tarlac
+                        </p>
+                    </div>
+
+                    <!-- Social Icon Column -->
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <h4 class="mb-3 text-uppercase font-weight-bold">FACEBOOK</h4>
+                        <a class="btn btn-outline-light btn-social mx-1 rounded-circle" 
+                           style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center;"
+                           href="https://www.facebook.com/aldrin.desepeda.0728" target="_blank">
+                            <i class="fab fa-fw fa-facebook-f"></i>
+                        </a>
+                    </div>
+
+                    <!-- Greetings Column -->
+                    <div class="col-lg-4">
+                        <h4 class="mb-3 text-uppercase font-weight-bold">GREETINGS</h4>
+                        <p class="lead mb-0 text-muted">
+                            Thank you for visiting my profile :)
+                        </p>
+                    </div>
+                </div>
+                <hr class="my-4 border-secondary">
+                <!-- Copyright Line -->
+                <div class="copyright text-center text-muted">
+                    <small>Copyright © My Profile 2026</small>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button -->
+        <div class="scroll-to-top d-lg-none position-fixed" style="bottom: 1rem; right: 1rem; z-index: 1040;">
+            <a class="js-scroll-trigger d-block text-center text-white bg-info rounded p-3" href="#page-top">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+
+        <!-- JavaScript CDNs -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
