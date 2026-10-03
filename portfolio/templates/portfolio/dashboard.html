@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --sand-light: #E3DCD2;
+            --accent-tan: #CC8B65;
+            --bg-primary: #013328;
+            --bg-dark: #100C0D;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--sand-light);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding-top: 80px;
+        }
+
+        h1, h2, h3, h4, .navbar-brand, .btn-custom {
+            font-family: 'Cinzel', serif;
+        }
+
+        .navbar-custom {
+            background-color: var(--bg-dark);
+            border-bottom: 1px solid #1f2220;
+        }
+
+        .card-table {
+            background-color: var(--bg-primary);
+            border: 1px solid #154539;
+            border-radius: 12px;
+        }
+
+        .table-dark-custom {
+            background-color: transparent;
+            color: var(--sand-light);
+        }
+
+        .table-dark-custom th {
+            border-color: #154539;
+            color: var(--accent-tan);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+
+        .table-dark-custom td {
+            border-color: #154539;
+            vertical-align: middle;
+        }
+
+        .btn-custom {
+            background-color: var(--accent-tan);
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #b87853;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold" style="color: var(--accent-tan);" href="{% url 'portfolio:dashboard' %}">ADMIN DASHBOARD</a>
+            <div class="ml-auto d-flex align-items-center">
+                <span class="mr-3 text-muted small d-none d-md-inline">Welcome, {{ user.username }}</span>
+                <a href="{% url 'portfolio:home' %}" class="btn btn-outline-light btn-sm mr-2">View Portfolio</a>
+                <a href="{% url 'portfolio:admin_logout' %}" class="btn btn-danger btn-sm">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Table of Projects -->
+        <div class="card card-table p-4 mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-white mb-0">PROJECTS</h3>
+                <a href="{% url 'portfolio:create_project' %}" class="btn btn-custom btn-sm">
+                    <i class="fas fa-plus mr-1"></i>Create Project
+                </a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-dark-custom mb-0">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Description</th>
+                            <th>Tech Stack</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for project in projects %}
+                            <tr>
+                                <td class="font-weight-bold" style="color: var(--accent-tan);">{{ project.project_name }}</td>
+                                <td>{{ project.description|truncatechars:50 }}</td>
+                                <td>{{ project.tech_stack_names }}</td>
+                                <td>
+                                    {% if project.link %}
+                                        <a href="{{ project.link }}" target="_blank" style="color: var(--sand-light);">
+                                            View Project <i class="fas fa-external-link-alt small ml-1"></i>
+                                        </a>
+                                    {% else %}
+                                        <span class="text-muted">N/A</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">No projects added yet.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Table of Tech Stacks -->
+        <div class="card card-table p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-white mb-0">TECH STACKS</h3>
+                <a href="{% url 'portfolio:create_tech_stack' %}" class="btn btn-custom btn-sm">
+                    <i class="fas fa-plus mr-1"></i>Create Tech Stack
+                </a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-dark-custom mb-0">
+                    <thead>
+                        <tr>
+                            <th>Tech Stack Name</th>
+                            <th>Projects Used In</th>
+                            <th>Date Added</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ts in tech_stacks %}
+                            <tr>
+                                <td class="font-weight-bold" style="color: var(--accent-tan);">{{ ts.name }}</td>
+                                <td>
+                                    {% for p in ts.projects.all %}
+                                        <span class="badge p-2 mr-1 mb-1" style="background-color: var(--accent-tan); color: #fff;">{{ p.project_name }}</span>
+                                    {% empty %}
+                                        <span class="text-muted">None</span>
+                                    {% endfor %}
+                                </td>
+                                <td>{{ ts.created_at|date:"Y-m-d H:i" }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="3" class="text-center text-muted">No tech stacks added yet.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

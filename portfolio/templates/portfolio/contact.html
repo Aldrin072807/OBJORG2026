@@ -6,27 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Contact Me</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
     <style>
         :root {
-            --accent-blue: #17a2b8;
-            --bg-primary: #1e293b;
-            --bg-secondary: #0f172a;
+            --sand-light: #E3DCD2;
+            --accent-tan: #CC8B65;
+            --bg-primary: #013328;
+            --bg-dark: #100C0D;
         }
 
         body {
             padding-top: 100px;
-            background-color: var(--bg-secondary);
-            color: #f8fafc;
+            background-color: var(--bg-dark);
+            color: var(--sand-light);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand, .section-banner-title {
+            font-family: 'Cinzel', serif;
         }
 
         .section-banner-title {
             font-size: 2.25rem;
             font-weight: 800;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             position: relative;
             padding-bottom: 12px;
             display: inline-block;
@@ -39,20 +49,21 @@
             left: 50%;
             transform: translateX(-50%);
             width: 50px;
-            height: 4px;
-            background-color: var(--accent-blue);
+            height: 3px;
+            background-color: var(--accent-tan);
             border-radius: 2px;
         }
 
         .form-card {
             background-color: var(--bg-primary);
-            border: 1px solid #334155;
+            border: 1px solid #154539;
             border-radius: 12px;
         }
 
         .btn-custom {
-            background-color: #17a2b8;
+            background-color: var(--accent-tan);
             color: #ffffff;
+            font-family: 'Cinzel', serif;
             font-weight: 700;
             border: none;
             padding: 0.75rem 1.75rem;
@@ -60,8 +71,13 @@
         }
 
         .btn-custom:hover {
-            background-color: #138496;
+            background-color: #b87853;
             color: #ffffff;
+        }
+
+        label {
+            color: var(--accent-tan);
+            font-weight: 600;
         }
     </style>
 </head>
@@ -69,15 +85,15 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand font-weight-bold" href="{% url 'portfolio:home' %}">MY PROFILE</a>
+            <a class="navbar-brand font-weight-bold" style="color: var(--accent-tan);" href="{% url 'portfolio:home' %}">MY PROFILE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 Menu <i class="fas fa-bars ml-1"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto text-center">
                     <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:home' %}">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:project_list' %}">PROJECTS</a></li>
                     <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:personal_info' %}">PERSONAL INFO</a></li>
+                    <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:project_list' %}">PROJECTS</a></li>
                     <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:testimony_list' %}">TESTIMONIALS</a></li>
                     <li class="nav-item active"><a class="nav-link py-3 px-3" href="{% url 'portfolio:contact' %}">CONTACT</a></li>
                 </ul>
@@ -93,39 +109,38 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card form-card p-4 p-md-5">
-                    <!-- Raw HTML Form for Quiz 3 Requirement -->
                     <form method="POST" action="{% url 'portfolio:contact' %}">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6 form-group mb-3">
-                                <label class="font-weight-bold text-info">First Name</label>
-                                <input type="text" name="first_name" class="form-control" required placeholder="Aldrin">
+                                <label>First Name</label>
+                                <input type="text" name="first_name" class="form-control" required>
                             </div>
                             <div class="col-md-6 form-group mb-3">
-                                <label class="font-weight-bold text-info">Last Name</label>
-                                <input type="text" name="last_name" class="form-control" required placeholder="Desepeda">
+                                <label>Last Name</label>
+                                <input type="text" name="last_name" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 form-group mb-3">
-                                <label class="font-weight-bold text-info">Contact Number</label>
-                                <input type="text" name="contact_number" class="form-control" required placeholder="09xx-xxx-xxxx">
+                                <label>Contact Number</label>
+                                <input type="text" name="contact_number" class="form-control" required>
                             </div>
                             <div class="col-md-6 form-group mb-3">
-                                <label class="font-weight-bold text-info">Email Address</label>
-                                <input type="email" name="email" class="form-control" required placeholder="al.desepeda@example.com">
+                                <label>Email Address</label>
+                                <input type="email" name="email" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label class="font-weight-bold text-info">Address</label>
-                            <input type="text" name="address" class="form-control" required placeholder="City, Province">
+                            <label>Address</label>
+                            <input type="text" name="address" class="form-control" required>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label class="font-weight-bold text-info">Message / Inquiry</label>
-                            <textarea name="message" class="form-control" rows="4" required placeholder="How can I help you?"></textarea>
+                            <label>Message / Inquiry</label>
+                            <textarea name="message" class="form-control" rows="4" required></textarea>
                         </div>
 
                         <div class="text-center">

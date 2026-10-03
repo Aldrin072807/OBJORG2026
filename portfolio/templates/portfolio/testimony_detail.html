@@ -6,27 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Testimony Detail</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
     <style>
         :root {
-            --accent-blue: #17a2b8;
-            --bg-primary: #1e293b;
-            --bg-secondary: #0f172a;
+            --sand-light: #E3DCD2;
+            --accent-tan: #CC8B65;
+            --bg-primary: #013328;
+            --bg-dark: #100C0D;
         }
 
         body {
             padding-top: 100px;
-            background-color: var(--bg-secondary);
-            color: #f8fafc;
+            background-color: var(--bg-dark);
+            color: var(--sand-light);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand, .section-banner-title {
+            font-family: 'Cinzel', serif;
         }
 
         .section-banner-title {
             font-size: 2.25rem;
             font-weight: 800;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             position: relative;
             padding-bottom: 12px;
             display: inline-block;
@@ -39,15 +49,31 @@
             left: 50%;
             transform: translateX(-50%);
             width: 50px;
-            height: 4px;
-            background-color: var(--accent-blue);
+            height: 3px;
+            background-color: var(--accent-tan);
             border-radius: 2px;
         }
 
         .detail-card {
             background-color: var(--bg-primary);
-            border: 1px solid #334155;
+            border: 1px solid #154539;
             border-radius: 12px;
+        }
+
+        .btn-custom {
+            background-color: var(--accent-tan);
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+        }
+
+        .btn-custom:hover {
+            background-color: #b87853;
+            color: #ffffff;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -55,15 +81,15 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand font-weight-bold" href="{% url 'portfolio:home' %}">MY PROFILE</a>
+            <a class="navbar-brand font-weight-bold" style="color: var(--accent-tan);" href="{% url 'portfolio:home' %}">MY PROFILE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 Menu <i class="fas fa-bars ml-1"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto text-center">
                     <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:home' %}">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:project_list' %}">PROJECTS</a></li>
                     <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:personal_info' %}">PERSONAL INFO</a></li>
+                    <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:project_list' %}">PROJECTS</a></li>
                     <li class="nav-item active"><a class="nav-link py-3 px-3" href="{% url 'portfolio:testimony_list' %}">TESTIMONIALS</a></li>
                     <li class="nav-item"><a class="nav-link py-3 px-3" href="{% url 'portfolio:contact' %}">CONTACT</a></li>
                 </ul>
@@ -79,14 +105,14 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card detail-card p-4 p-md-5">
-                    <i class="fas fa-quote-left text-info fa-3x mb-4"></i>
+                    <i class="fas fa-quote-left fa-3x mb-4" style="color: var(--accent-tan);"></i>
                     <p class="lead font-italic mb-4" style="line-height: 1.8;">"{{ testimony.content }}"</p>
-                    <hr class="border-secondary">
-                    <h4 class="font-weight-bold text-info mb-1">{{ testimony.full_name }}</h4>
+                    <hr style="border-color: #154539;">
+                    <h4 class="font-weight-bold mb-1" style="color: var(--accent-tan);">{{ testimony.full_name }}</h4>
                     <small class="text-muted">Submitted on {{ testimony.created_at|date:"F d, Y" }}</small>
 
                     <div class="mt-4 text-center">
-                        <a href="{% url 'portfolio:testimony_list' %}" class="btn btn-info font-weight-bold">
+                        <a href="{% url 'portfolio:testimony_list' %}" class="btn btn-custom font-weight-bold">
                             <i class="fas fa-arrow-left mr-2"></i>Back to Testimonials
                         </a>
                     </div>

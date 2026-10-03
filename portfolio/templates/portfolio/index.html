@@ -6,43 +6,62 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>My Profile</title>
         
+        <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
         <!-- Bootstrap 4 CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <!-- Font Awesome icons -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
-        <!-- Custom static stylesheets -->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
-        <link href="{% static 'css/heading.css' %}" rel="stylesheet">
-        <link href="{% static 'css/body.css' %}" rel="stylesheet">
-
         <style>
-            /* Smooth scrolling for anchor links */
             html {
                 scroll-behavior: smooth;
             }
 
-            /* Layout & Color Variables */
             :root {
-                --accent-blue: #17a2b8;
-                --bg-primary: #1e293b;
-                --bg-secondary: #0f172a;
+                --sand-light: #E3DCD2;
+                --accent-tan: #CC8B65;
+                --bg-primary: #013328;
+                --bg-dark: #100C0D;
             }
 
             body {
                 padding-top: 100px;
-                background-color: var(--bg-secondary);
-                color: #f8fafc;
+                background-color: var(--bg-dark);
+                color: var(--sand-light);
+                font-family: 'Plus Jakarta Sans', sans-serif;
             }
 
-            /* Banner Heading Style */
+            h1, h2, h3, h4, h5, h6, .navbar-brand, .section-banner-title {
+                font-family: 'Cinzel', serif;
+            }
+
+            .navbar-custom {
+                background-color: var(--bg-dark) !important;
+                border-bottom: 1px solid #1f2220;
+            }
+
+            .navbar-dark .navbar-nav .nav-link {
+                color: var(--sand-light);
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+            .navbar-dark .navbar-nav .nav-link:hover {
+                color: var(--accent-tan);
+            }
+
             .section-banner-title {
                 font-size: 2.25rem;
                 font-weight: 800;
-                letter-spacing: 1.5px;
+                letter-spacing: 2px;
                 position: relative;
                 padding-bottom: 12px;
                 display: inline-block;
+                color: var(--sand-light);
             }
 
             .section-banner-title::after {
@@ -51,9 +70,9 @@
                 bottom: 0;
                 left: 50%;
                 transform: translateX(-50%);
-                width: 50px;
-                height: 4px;
-                background-color: var(--accent-blue);
+                width: 60px;
+                height: 3px;
+                background-color: var(--accent-tan);
                 border-radius: 2px;
             }
 
@@ -64,7 +83,7 @@
             }
 
             .masthead-avatar {
-                max-width: 320px;
+                max-width: 300px;
                 width: 100%;
                 height: auto;
             }
@@ -73,68 +92,85 @@
                 padding: 5rem 0;
             }
 
-            .portfolio-item {
-                cursor: pointer;
-                border-radius: 12px;
-                overflow: hidden;
-            }
-
             .bg-primary-custom {
                 background-color: var(--bg-primary) !important;
             }
 
             .bg-secondary-custom {
-                background-color: var(--bg-secondary) !important;
+                background-color: var(--bg-dark) !important;
+            }
+
+            .portfolio-card {
+                background-color: var(--bg-primary);
+                border: 1px solid #154539;
+                border-radius: 12px;
+                transition: transform 0.2s ease, border-color 0.2s ease;
+            }
+
+            .portfolio-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--accent-tan);
             }
 
             .btn-custom {
-                background-color: #17a2b8;
+                background-color: var(--accent-tan);
                 color: #ffffff;
+                font-family: 'Cinzel', serif;
                 font-weight: 700;
                 border: none;
-                padding: 0.75rem 1.75rem;
+                padding: 0.85rem 2rem;
                 border-radius: 6px;
-                transition: background-color 0.2s ease;
+                letter-spacing: 1px;
+                transition: background-color 0.2s ease, opacity 0.2s ease;
             }
 
             .btn-custom:hover {
-                background-color: #138496;
+                background-color: #b87853;
                 color: #ffffff;
+                text-decoration: none;
+            }
+
+            .text-tan {
+                color: var(--accent-tan) !important;
+            }
+
+            .text-sand {
+                color: var(--sand-light) !important;
             }
         </style>
     </head>
     <body id="page-top">
         <!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary-custom fixed-top" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand font-weight-bold" href="{% url 'portfolio:home' %}">MY PROFILE</a>
-                <button class="navbar-toggler font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand font-weight-bold text-tan" href="{% url 'portfolio:home' %}">MY PROFILE</a>
+                <button class="navbar-toggler font-weight-bold bg-dark text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     Menu <i class="fas fa-bars ml-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto text-center">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">PROFILE</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'portfolio:personal_info' %}">PERSONAL INFO</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects">PROJECTS</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#testimonials">TESTIMONIALS</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">CONTACT</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">PROFILE</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'portfolio:personal_info' %}">PERSONAL INFO</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#projects">PROJECTS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#testimonials">TESTIMONIALS</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">CONTACT</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <!-- Hero Section -->
-        <header class="masthead bg-primary-custom text-white text-center">
+        <header class="masthead bg-primary-custom text-center">
             <div class="container d-flex align-items-center flex-column justify-content-center">
-                <img class="masthead-avatar mb-4" src="{% static 'assets/img/Live chatbot (2).svg' %}" alt="Avatar" onerror="this.src='https://via.placeholder.com/320?text=Profile+Avatar';">
-                <h1 class="masthead-heading text-uppercase mb-3 font-weight-bold">
+                <img class="masthead-avatar mb-4" src="{% static 'assets/img/Live chatbot (2).svg' %}" alt="Avatar" onerror="this.src='https://via.placeholder.com/300?text=Profile+Avatar';">
+                <h1 class="masthead-heading text-uppercase mb-3 font-weight-bold text-sand">
                     {% if personal_info %}
                         {{ personal_info.first_name }} {{ personal_info.last_name }}
                     {% else %}
                         ALDRIN DESEPEDA
                     {% endif %}
                 </h1>
-                <p class="masthead-subheading font-weight-light mb-0 mx-auto" style="max-width: 700px;">
+                <p class="masthead-subheading font-weight-light mb-0 mx-auto" style="max-width: 700px; color: var(--sand-light);">
                     Bachelor of Science in Computer Engineering <br><br>
                     Welcome to my personal portfolio! Explore my projects, technical skills, testimonials, and contact information below.
                 </p>
@@ -144,38 +180,38 @@
         <!-- Profile Section -->
         <section class="page-section bg-secondary-custom" id="portfolio">
             <div class="container text-center">
-                <h2 class="section-banner-title text-white text-uppercase mb-5">PROFILE</h2>
+                <h2 class="section-banner-title text-uppercase mb-5">PROFILE</h2>
                 
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal0">
-                            <div class="card bg-dark text-white p-4">
-                                <i class="fas fa-users fa-3x mb-3 text-info"></i>
-                                <h5>Socials</h5>
+                            <div class="card portfolio-card p-4">
+                                <i class="fas fa-users fa-3x mb-3 text-tan"></i>
+                                <h5 class="text-sand">Socials</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                            <div class="card bg-dark text-white p-4">
-                                <i class="fas fa-graduation-cap fa-3x mb-3 text-info"></i>
-                                <h5>Educational Background</h5>
+                            <div class="card portfolio-card p-4">
+                                <i class="fas fa-graduation-cap fa-3x mb-3 text-tan"></i>
+                                <h5 class="text-sand">Educational Background</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
-                            <div class="card bg-dark text-white p-4">
-                                <i class="fas fa-briefcase fa-3x mb-3 text-info"></i>
-                                <h5>Experience</h5>
+                            <div class="card portfolio-card p-4">
+                                <i class="fas fa-briefcase fa-3x mb-3 text-tan"></i>
+                                <h5 class="text-sand">Experience</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
-                            <div class="card bg-dark text-white p-4">
-                                <i class="fas fa-tools fa-3x mb-3 text-info"></i>
-                                <h5>Skills</h5>
+                            <div class="card portfolio-card p-4">
+                                <i class="fas fa-tools fa-3x mb-3 text-tan"></i>
+                                <h5 class="text-sand">Skills</h5>
                             </div>
                         </div>
                     </div>
@@ -184,10 +220,10 @@
         </section>
 
         <!-- Projects Section -->
-        <section class="page-section bg-primary-custom text-white text-center" id="projects">
+        <section class="page-section bg-primary-custom text-center" id="projects">
             <div class="container">
                 <h2 class="section-banner-title text-uppercase mb-4">PROJECTS</h2>
-                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
+                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8; color: var(--sand-light);">
                     Explore my web development work, software applications, and computer engineering coursework projects.
                 </p>
                 <div class="mt-4">
@@ -199,10 +235,10 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section class="page-section bg-secondary-custom text-white text-center" id="testimonials">
+        <section class="page-section bg-secondary-custom text-center" id="testimonials">
             <div class="container">
                 <h2 class="section-banner-title text-uppercase mb-4">TESTIMONIALS</h2>
-                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
+                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8; color: var(--sand-light);">
                     Read feedback and recommendations from academic peers, project partners, and colleagues, or leave a new testimony.
                 </p>
                 <div class="mt-4">
@@ -214,10 +250,10 @@
         </section>
 
         <!-- Inquiries / Contact Section -->
-        <section class="page-section bg-primary-custom text-white text-center" id="contact">
+        <section class="page-section bg-primary-custom text-center" id="contact">
             <div class="container">
                 <h2 class="section-banner-title text-uppercase mb-4">INQUIRIES & CONTACT</h2>
-                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8;">
+                <p class="lead mb-4 mx-auto" style="max-width: 750px; line-height: 1.8; color: var(--sand-light);">
                     Have questions or want to inquire about a collaboration? Send a message through the contact form.
                 </p>
                 <div class="mt-4">
@@ -232,9 +268,9 @@
         <div class="portfolio-modal modal fade" id="portfolioModal0" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content bg-dark text-white">
-                    <button class="close text-white p-3" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <button class="close text-white p-3" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     <div class="modal-body text-center p-5">
-                        <h2 class="text-info mb-4">Socials</h2>
+                        <h2 class="text-tan mb-4">Socials</h2>
                         <p class="lead">For inquiries, collaborations, or academic-related concerns, reach me at <strong>amdesepeda@student.hau.edu.ph</strong> or GitHub at <strong>github.com/Aldrin072807</strong>.</p>
                     </div>
                 </div>
@@ -244,9 +280,9 @@
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content bg-dark text-white">
-                    <button class="close text-white p-3" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <button class="close text-white p-3" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     <div class="modal-body text-center p-5">
-                        <h2 class="text-info mb-4">Educational Background</h2>
+                        <h2 class="text-tan mb-4">Educational Background</h2>
                         <p class="lead">Graduated with honors across elementary, junior high, and senior high school education. Currently pursuing a Bachelor of Science in Computer Engineering.</p>
                     </div>
                 </div>
@@ -256,9 +292,9 @@
         <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content bg-dark text-white">
-                    <button class="close text-white p-3" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <button class="close text-white p-3" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     <div class="modal-body text-center p-5">
-                        <h2 class="text-info mb-4">Experience</h2>
+                        <h2 class="text-tan mb-4">Experience</h2>
                         <p class="lead">Gained practical skills in student computer skill tutorials, Canva graphic design workshops for elementary pupils, and administrative record management.</p>
                     </div>
                 </div>
@@ -268,9 +304,9 @@
         <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content bg-dark text-white">
-                    <button class="close text-white p-3" type="button" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                    <button class="close text-white p-3" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     <div class="modal-body text-center p-5">
-                        <h2 class="text-info mb-4">Skills</h2>
+                        <h2 class="text-tan mb-4">Skills</h2>
                         <p class="lead">Strong critical thinking, time management, technical problem-solving, team leadership, and adaptable collaboration.</p>
                     </div>
                 </div>
@@ -278,12 +314,11 @@
         </div>
 
         <!-- Footer -->
-        <footer class="footer py-5 bg-dark text-white text-center">
+        <footer class="footer py-5 bg-dark text-center">
             <div class="container">
                 <div class="row">
-                    <!-- Location Column -->
                     <div class="col-lg-4 mb-4 mb-lg-0">
-                        <h4 class="mb-3 text-uppercase font-weight-bold">LOCATION</h4>
+                        <h4 class="mb-3 text-uppercase font-weight-bold text-tan">LOCATION</h4>
                         <p class="lead mb-0 text-muted">
                             {% if personal_info %}
                                 {{ personal_info.address }}
@@ -293,38 +328,28 @@
                         </p>
                     </div>
 
-                    <!-- Social Icon Column -->
                     <div class="col-lg-4 mb-4 mb-lg-0">
-                        <h4 class="mb-3 text-uppercase font-weight-bold">FACEBOOK</h4>
+                        <h4 class="mb-3 text-uppercase font-weight-bold text-tan">FACEBOOK</h4>
                         <a class="btn btn-outline-light btn-social mx-1 rounded-circle" 
-                           style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center;"
+                           style="width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border-color: var(--accent-tan); color: var(--accent-tan);"
                            href="https://www.facebook.com/aldrin.desepeda.0728" target="_blank">
                             <i class="fab fa-fw fa-facebook-f"></i>
                         </a>
                     </div>
 
-                    <!-- Greetings Column -->
                     <div class="col-lg-4">
-                        <h4 class="mb-3 text-uppercase font-weight-bold">GREETINGS</h4>
+                        <h4 class="mb-3 text-uppercase font-weight-bold text-tan">GREETINGS</h4>
                         <p class="lead mb-0 text-muted">
                             Thank you for visiting my profile :)
                         </p>
                     </div>
                 </div>
                 <hr class="my-4 border-secondary">
-                <!-- Copyright Line -->
                 <div class="copyright text-center text-muted">
                     <small>Copyright © My Profile 2026</small>
                 </div>
             </div>
         </footer>
-
-        <!-- Scroll to Top Button -->
-        <div class="scroll-to-top d-lg-none position-fixed" style="bottom: 1rem; right: 1rem; z-index: 1040;">
-            <a class="js-scroll-trigger d-block text-center text-white bg-info rounded p-3" href="#page-top">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
 
         <!-- JavaScript CDNs -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
